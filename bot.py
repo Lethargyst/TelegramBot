@@ -1,11 +1,14 @@
 #!venv/bin/python
 import logging
-from os import getenv
-from tokens import *
+from os import environ
 from textRecognition import get_analysed
 from aiogram import Bot, Dispatcher, executor, types
 
-bot = Bot(token=TOKEN)
+bot_token = environ['TOKEN']
+if not bot_token:
+    exit('Error: no token provided')
+
+bot = Bot(token=bot_token)
 dp = Dispatcher(bot)
 logging.basicConfig(level=logging.INFO)
 
